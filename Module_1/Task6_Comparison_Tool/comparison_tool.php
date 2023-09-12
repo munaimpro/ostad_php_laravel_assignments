@@ -1,7 +1,7 @@
 <?php
 /*--- Including Header File and Coverter Class ---*/
     include'include/header.php';
-    include'class/WeatherReportGenerator.php';
+    include'class/ComparisonTool.php';
 
 /*--- Taking input and passing to method ---*/
     if(isset($_POST['generate']) && $_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -49,7 +49,7 @@
                             <?php if(isset($result) && !is_string($result)){ ?>    
                                 <div class="col-12 text-center">
                                     <h4>
-                                        <?php echo ($result == 1)? "{$_POST['number1']} is the largest number" : "{$_POST['number2']} is the Largest Number"; ?>
+                                        <?php echo ($result == 1)? "{$_POST['number1']} is the Largest Number" : (($result == 2)? "{$_POST['number2']} is the Largest Number" : "Both numbers are equal!"); ?>
                                     </h4>
                                 </div>
                             <?php } ?>
