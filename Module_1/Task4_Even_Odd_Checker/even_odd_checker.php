@@ -12,7 +12,13 @@
 
     <div class="container">
         <div class="row d-flex justify-content-center min-vh-100 m-5">
-            <div class="col-lg-8 col-md-8 col-12 p-5">
+            <div class="col-lg-8 col-md-8 col-12 p-2">
+            <!-- Task Details Start -->
+                <div class="rounded p-3 text-center">
+                    <h2>Module 1 Assignment: Task 4</h2>
+                </div>
+            <!-- Task Details End -->
+
             <!-- Card Start -->
                 <div class="card rounded">
                     <div class="card-body p-3">
@@ -41,7 +47,7 @@
 
                             <!-- Number Check Result Display -->
                             <?php if(isset($result) && !is_string($result)){ ?>    
-                                <div class="col-lg-6 col-md-6 col-12 text-center">
+                                <div class="col-12 text-center">
                                     <h4><?php echo ($result == 0)? "Your number {$_POST['number']} is an even number" : "Your number {$_POST['number']} is an odd number"; ?></h4>
                                 </div>
                             <?php } ?>

@@ -11,7 +11,14 @@
 
     <div class="container">
         <div class="row d-flex justify-content-center min-vh-100 m-5">
-            <div class="col-lg-8 col-md-8 col-12 p-5">
+            <div class="col-lg-8 col-md-8 col-12 p-2">
+            <!-- Task Details Start -->
+                <div class="rounded p-3 text-center">
+                    <h2>Module 1 Assignment: Task 1</h2>
+                </div>
+            <!-- Task Details End -->
+
+            <!-- Card Start -->
                 <div class="card rounded p-5">
                     <div class="card-body">
                         <div class="card-title text-center mb-3">
@@ -41,6 +48,7 @@
                         </div>
                     </div>
                 </div>
+            <!-- Card End -->
             </div>
         </div>
     </div>

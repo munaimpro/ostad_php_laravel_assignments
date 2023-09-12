@@ -19,7 +19,7 @@
                 return $result = $number1 * $number2;
             } elseif($operator == "+"){
                 return $result = $number1 + $number2;
-            } else{
+            } elseif($operator == "-"){
                 return $result = $number1 - $number2;
             }
         }
