@@ -59,7 +59,7 @@
                                 </div>
 
                             <!-- Acquired Grade -->
-                                <div class="col-lg-6 col-md-6 col-12 mb-5 text-center">
+                                <div class="col-lg-6 col-md-6 col-12 text-center">
                                     <label for="Average" class="form-label text-black-50 fw-semibold">Your Acquired Grade</label>
                                     <h4>
                                         <?php
@@ -68,7 +68,7 @@
                                     </h4>
                                 </div>
                             <?php } ?>
-                                <div class="col-12">
+                                <div class="col-12 mt-5">
                                     <button class="btn btn-primary w-100 fs-5" type="submit" name="calculate_grade">Calculate Grade</button>
                                 </div>
                             </div>

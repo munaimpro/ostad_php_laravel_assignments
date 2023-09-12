@@ -48,7 +48,7 @@
                                 </div>
                                 
                                 <?php if(isset($result) && !is_string($result)){ ?>
-                                <div class="col-12 mb-5">
+                                <div class="col-12">
                                     <label for="Result" class="form-label text-black-50 fw-semibold">
                                         <?php 
                                             echo ($_POST['type'] == "celsius")? "Celsius To Farenheit" : "Farenheit To Celsius";
@@ -60,7 +60,7 @@
                                 </div>
                                 <?php } ?>
                                 
-                                <div class="col-12">
+                                <div class="col-12 mt-5">
                                     <button class="btn btn-primary w-100 fs-5" type="submit" name="convert">Convert</button>
                                 </div>
                             </div>
