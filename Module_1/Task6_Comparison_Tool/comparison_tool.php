@@ -4,7 +4,7 @@
     include'class/ComparisonTool.php';
 
 /*--- Taking input and passing to method ---*/
-    if(isset($_POST['generate']) && $_SERVER['REQUEST_METHOD'] == 'POST'){
+    if(isset($_POST['compare']) && $_SERVER['REQUEST_METHOD'] == 'POST'){
         $result = ComparisonTool::compareNumbers($_POST);
     }
 
@@ -54,7 +54,7 @@
                                 </div>
                             <?php } ?>
                                 <div class="col-12 mt-5">
-                                    <button class="btn btn-primary w-100 fs-5" type="submit" name="generate">Generate Report</button>
+                                    <button class="btn btn-primary w-100 fs-5" type="submit" name="compare">Compare</button>
                                 </div>
                             </div>
                         </form>
