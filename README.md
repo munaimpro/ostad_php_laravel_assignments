@@ -1,5 +1,10 @@
 # Ostad PHP & Laravel Course Assignments
-## <a href="https://github.com/munaimpro/ostad_php_laravel_assignments/tree/main/Module_1">Assignment 1: PHP Fundamentals Assignment</a>
+## <a href="https://github.com/munaimpro/ostad_php_laravel_assignments/tree/main/Module_2">Assignment 2: PHP Fundamentals Assignment (Module 2)</a>
+#### Task 1: Personal Information Page
+#### Task 2: Temperature Converter
+#### Task 3: Grade Calculator
+#### Task 4: Even or Odd Checker<br/><br/>
+## <a href="https://github.com/munaimpro/ostad_php_laravel_assignments/tree/main/Module_1">Assignment 1: PHP Fundamentals Assignment (Module 1)</a>
 #### Task 1: Personal Information Page
 #### Task 2: Temperature Converter
 #### Task 3: Grade Calculator
