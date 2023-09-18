@@ -1,11 +1,4 @@
 <?php
-    /**
-     * Summary of printEvenNumber function
-     * @param int $start
-     * @param int $end
-     * @param int $step
-     * @return void
-     */
     function printEvenNumber(int $start, int $end, int $step){
         $start+=1;
         $i = $start;

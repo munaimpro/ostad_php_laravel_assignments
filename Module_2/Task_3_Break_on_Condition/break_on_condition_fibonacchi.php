@@ -5,7 +5,7 @@
         if($number1 > 100):
             break; // Break the loop 
         endif;
-        echo $number1 . PHP_EOL;
+        echo $number1." ";
         $number3 = $number1 + $number2;
         $number1 = $number2;
         $number2 = $number3;
