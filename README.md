@@ -4,13 +4,13 @@
 #### Task 2: Array Manipulation
 #### Task 3: Array Sorting
 #### Task 4: Multidimensional Array
-#### Task 5: Password Generator<br/><br/>
+#### Task 5: Password Generator <br/><br/>
 
 ## <a href="https://github.com/munaimpro/ostad_php_laravel_assignments/tree/main/Module_2">Assignment 2: PHP Fundamentals Assignment</a>
 #### Task 1: Looping with Increment using a Function
 #### Task 2: Skip Multiples of 5
 #### Task 3: Break on Condition
-#### Task 4: Fibonacci Series printing using a Function<br/><br/>
+#### Task 4: Fibonacci Series printing using a Function <br/><br/>
 
 ## <a href="https://github.com/munaimpro/ostad_php_laravel_assignments/tree/main/Module_1">Assignment 1: PHP Fundamentals Assignment</a>
 #### Task 1: Personal Information Page
