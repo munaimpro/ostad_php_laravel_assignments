@@ -1,4 +1,7 @@
 # Ostad PHP & Laravel Course Assignments
+## <a href="https://github.com/munaimpro/ostad_php_laravel_assignments/tree/main/Module_4">Assignment 4: PHP OOP Assignment</a>
+#### Task: Implementation of the Product class in PHP <br/><br/>
+
 ## <a href="https://github.com/munaimpro/ostad_php_laravel_assignments/tree/main/Module_3">Assignment 3: PHP Fundamentals Assignment</a>
 #### Task 1: String Manipulation
 #### Task 2: Array Manipulation
