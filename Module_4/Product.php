@@ -1,19 +1,29 @@
-php
-class Product {
-    // TODO: Add properties
+<?php
+class Product{
+    /*-- Adding properties --*/
+    private $id, $name, $price; 
     
     public function __construct($id, $name, $price) {
-        // TODO: Initialize properties
+        /*-- Initializing properties --*/
+        $this->id    = $id;
+        $this->name  = $name;
+        $this->price = $price;
     }
 
+    /*-- getFormattedPrice method --*/
+    function getFormattedPrice(){
+        return '$'.number_format($this->price, 2); /* Returning the price upto 2 decimal point */
+    }
 
-    // TODO: Add getFormattedPrice method
-
-
-    // TODO: Add showDetails method
+    /*-- showDetails method --*/
+    function showDetails(){
+        echo "Product Details:\n";
+        echo "- ID: {$this->id}\n";
+        echo "- Name: {$this->name}\n";
+        echo "- Price: {$this->getFormattedPrice()}";
+    }
 }
 
-
-// Test the Product class
+/*-- Testing the Product class --*/
 $product = new Product(1, 'T-shirt', 19.99);
 $product->showDetails();
