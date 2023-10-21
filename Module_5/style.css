@@ -18,11 +18,20 @@ a{
     border-color: #8a2be2 !important;
 }
 
-input{
+.btn-primary:hover{
+    background-color: #691bb3 !important;
+    border-color: #691bb3 !important;
+}
+
+input, select{
     box-shadow: none !important;
 }
 
 input:focus{
     border-color: #8a2be2 !important;
+}
+
+.card-body{
+    color: #8a2be2;
 }
 
