@@ -1,35 +1,21 @@
 <!-- Header Start -->
 <?php
     include("includes/header.php");
+    
+    /*-- Calculating Total Admins and Users --*/
+    $totalAdmin = 0;
+    $totalUser  = 0;
+
+    // while($line = fgetcsv($fp)){
+    //   if($line[0] == "Admin"){
+    //     $totalAdmin++;
+    //   }
+    //   if($line[0] == "User"){
+    //     $totalUser++;
+    //   }
+    // }
 ?>
 <!-- Header End -->
-    <div class="container-fluid">
-      <div class="row">
-        <!-- Navigation Menu Start -->
-        <nav class="navbar navbar-expand-lg bg-white shadow-sm fw-bold">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#"><h3>User Authentication and Role Management System</h3></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav ms-auto text-uppercase">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="admin_home.php">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="users.php">Users</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="admin_home.php?action=logout">Logout</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <!-- Navigation Menu End -->
-      </div>
-    </div>
 
     <div class="container-fluid">
       <div class="row d-flex justify-content-center min-vh-100 m-1">
@@ -41,23 +27,25 @@
           </div>
         <!-- Alert Message End -->
         
-        <!-- User Details Start -->
+        <!-- User Details Section Start -->
           <div class="container-fluid mb-4">
               <div class="row text-uppercase">
                 <h2>Munaim Khan</h2>
                 <h5>Admin</h5>
               </div>
           </div>
-        <!-- User Detail End -->
+        <!-- User Detail Section End -->
 
-        <!-- Total User Start -->
+        <!-- Total User Section Start -->
           <div class="container mb-5 mt-5">
             <div class="row">
                 <!-- Total User -->
                 <div class="col-md-6 col-lg-6 col-12">
                     <div class="card">
                       <div class="card-body text-center">
-                          <h1 class="display-1 fw-bold">6</h1>
+                          <h1 class="display-1 fw-bold">
+                            <?php echo $totalUser; ?>
+                          </h1>
                       </div>
                       <div class="card-footer">
                         <p class="m-0 fw-bold">Users</p>
@@ -69,7 +57,9 @@
                 <div class="col-md-6 col-lg-6 col-12">
                     <div class="card">
                       <div class="card-body text-center">
-                          <h1 class="display-1 fw-bold">6</h1>
+                          <h1 class="display-1 fw-bold">
+                            <?php echo $totalAdmin; ?>
+                          </h1>
                       </div>
                       <div class="card-footer">
                         <p class="m-0 fw-bold">Admins</p>
@@ -78,7 +68,7 @@
                 </div>
             </div>
           </div>
-        <!-- Total User End -->
+        <!-- Total User Section End -->
 
         <!-- Home Content Start -->
           <div class="card rounded">
@@ -101,27 +91,28 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                      $i = 0;
+                      while($user = fgetcsv($fp)){
+                        $i++;
+                        if($user[0] == "Admin"){
+                          $totalAdmin++; // Incrementing admin number decleared at the starting of the script
+                        }
+                        if($user[0] == "User"){
+                          $totalUser++; // Incrementing user number decleared at the starting of the script
+                        }
+                    ?>
                         <tr>
-                            <td>1</td>
-                            <td>Firstname Lastname</td>
-                            <td>email@email.com</td>
-                            <td>role1</td>
+                            <td><?php echo $i; ?></td>
+                            <td><?php echo $user[1] . " " . $user[2] ?></td>
+                            <td><?php echo $user[3] ?></td>
+                            <td><?php echo $user[0] ?></td>
                             <td>
                               <a href=""><button class="btn btn-primary">Update</button></a>
                               <a href=""><button class="btn btn-danger">Remove</button></a>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td>Firstname Lastname</td>
-                            <td>email@email.com</td>
-                            <td>role1</td>
-                            <td>
-                              <a href=""><button class="btn btn-primary">Update</button></a>
-                              <a href=""><button class="btn btn-danger">Remove</button></a>
-                            </td>
-                        </tr>
+                    <?php } ?>
                     </tbody>
                   </table>
               </div>

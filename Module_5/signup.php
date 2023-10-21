@@ -32,6 +32,7 @@
         } else{
             $userPassword = md5($userPassword); // Making md5 password
             $userDetails = [
+                "userRole"     => $userRole,
                 "firstName"    => $firstName,
                 "lastName"     => $lastName,
                 "userName"     => $userName,
