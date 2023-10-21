@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - User Authentication and Role Management System</title>
+    <title>Sign In - User Authentication and Role Management System</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,7 +15,7 @@
             <div class="card rounded">
                 <div class="card-header text-white fw-bold">
                 <!-- Card Title Start -->
-                    <h3 class="card-title p-3 m-auto text-center">Create New Account</h3>
+                    <h3 class="card-title p-3 m-auto text-center">Sign In</h3>
                 <!-- Card Title End -->
                 </div>
 
@@ -23,14 +23,6 @@
                 <!-- Form Start -->
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                         <div class="row justify-content-center fs-5">
-                            <div class="col-12 mb-2">
-                                <input type="text" name="firstName" placeholder="First Name" class="form-control fs-5">
-                            </div>
-                            
-                            <div class="col-12 mb-2">
-                                <input type="text" name="lastName" placeholder="Last Name" class="form-control fs-5">
-                            </div>
-
                             <div class="col-12 mb-2">
                                 <input type="text" name="userName" placeholder="Username" class="form-control fs-5">
                             </div>
@@ -44,11 +36,15 @@
                             </div>
                             
                             <div class="col-12 mt-5">
-                                <button class="btn btn-primary shadow-none text-white w-100 fs-5" type="submit" name="signup">Sign Up</button>
+                                <button class="btn btn-primary shadow-none text-white w-100 fs-5" type="submit" name="signup">Sign In</button>
                             </div>
 
-                            <div class="col-12 mt-5">
-                                <p class="text-center">Already a member? <a href="signin.php" class="text-decoration-none fw-bold">Login</a></p>
+                            <div class="col-6 mt-5">
+                                <p class="text-center">Forgot Password? <a href="#" class="text-decoration-none fw-bold">Find</a></p>
+                            </div>
+
+                            <div class="col-6 mt-5">
+                                <p class="text-center">Don't have an account? <a href="signup.php" class="text-decoration-none fw-bold">Create</a></p>
                             </div>
                         </div>
                     </form>
