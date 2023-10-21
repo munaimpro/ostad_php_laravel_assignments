@@ -1,4 +1,7 @@
 # Ostad PHP & Laravel Course Assignments
+## <a href="https://github.com/munaimpro/ostad_php_laravel_assignments/tree/main/Module_5">Assignment 5: PHP File, Session, Date, Exception Assignment</a>
+#### Task: User Authentication and Role Management System <br/><br/>
+
 ## <a href="https://github.com/munaimpro/ostad_php_laravel_assignments/tree/main/Module_4">Assignment 4: PHP OOP Assignment</a>
 #### Task: Implementation of the Product class in PHP <br/><br/>
 
