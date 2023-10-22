@@ -1,6 +1,22 @@
 <!-- Header Start -->
 <?php
     include("includes/header.php");
+
+    /*-- User Update Process --*/
+    if(isset($_GET['update']) && $_GET['update'] != NULL){
+        $updateId = $_GET['update']; // Getting user id for update
+        $data = file($filename); // Getting file data as array
+
+        // file_put_contents($filename, $data);
+        print_r($data);
+        echo "<b>" . $data[$updateId] . "</b>";
+        echo "<b>" . count($data) . "</b>";
+        for($i = 0; $i < count($data); $i++){
+            if($i == $updateId){
+                echo "Single";
+            }
+        }
+    }
 ?>
 <!-- Header End -->
 
@@ -20,37 +36,44 @@
                   <!-- Form Start -->
                   <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                     <div class="row justify-content-center fs-5">
+                    <?php
+                      for($i = 0; $i < count($data); $i++){
+                        if($i == $updateId){
+                            $singleUserData = explode(",", $data[$i]);
+                    ?>
                         <div class="col-12 mb-2">
-                            <input type="text" name="firstName" placeholder="First Name" class="form-control fs-5">
+                            <label for="firstName">First Name</label>
+                            <input type="text" name="firstName" value="<?php echo $singleUserData[1]; ?>" class="form-control fs-5">
                         </div>
+                    <?php } } ?>
                         
                         <div class="col-12 mb-2">
-                            <input type="text" name="lastName" placeholder="Last Name" class="form-control fs-5">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" name="lastName" value="<?php echo $singleUserData[2]; ?>" class="form-control fs-5">
                         </div>
 
                         <div class="col-12 mb-2">
-                            <input type="text" name="userName" placeholder="Username" class="form-control fs-5">
+                            <label for="userName">Username</label>
+                            <input type="text" name="userName" value="<?php echo $singleUserData[3]; ?>" class="form-control fs-5">
                         </div>
 
                         <div class="col-12 mb-2">
-                            <input type="text" name="mailAddress" placeholder="Email" class="form-control fs-5">
+                            <label for="mailAddress">Email</label>
+                            <input type="text" name="mailAddress" value="<?php echo $singleUserData[4]; ?>" class="form-control fs-5">
                         </div>
 
                         <div class="col-12 mb-2">
-                            <input type="text" name="userPassword" placeholder="Password" class="form-control fs-5">
-                        </div>
-
-                        <div class="col-12 mb-2">
+                          <label for="role">Role</label>
                           <select name="role" class="form-select fs-5">
-                            <option value="">Role1</option>
-                            <option value="">Role1</option>
-                            <option value="">Role1</option>
+                            <option value="Admin" <?php if($singleUserData[0] == "Admin"){ echo "selected"; } ?> >Admin</option>
+                            <option value="User" <?php if($singleUserData[0] == "User"){ echo "selected"; } ?> >User</option>
                           </select>
                         </div>
                         
                         <div class="col-12 mt-5">
-                            <button class="btn btn-primary shadow-none text-white w-100 fs-5" type="submit" name="signup">Update</button>
+                            <button class="btn btn-primary shadow-none text-white w-100 fs-5" type="submit" name="update">Update</button>
                         </div>
+                    <?php // } } ?>
                     </div>
                 </form>
             <!-- Form End -->

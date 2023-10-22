@@ -35,3 +35,11 @@ input:focus{
     color: #8a2be2;
 }
 
+label{
+    position: relative;
+    top: 14px;
+    background: #ffffff;
+    margin: 0 12px;
+    padding: 0 0px;
+    font-size: 18px;
+}

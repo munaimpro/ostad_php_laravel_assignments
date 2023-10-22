@@ -38,9 +38,7 @@
                 <div class="col-md-6 col-lg-6 col-12">
                     <div class="card">
                       <div class="card-body text-center">
-                          <h1 class="display-1 fw-bold">
-                            <?php echo $totalUser; ?>
-                          </h1>
+                          <h1 class="display-1 fw-bold">6</h1>
                       </div>
                       <div class="card-footer">
                         <p class="m-0 fw-bold">Users</p>
@@ -52,9 +50,7 @@
                 <div class="col-md-6 col-lg-6 col-12">
                     <div class="card">
                       <div class="card-body text-center">
-                          <h1 class="display-1 fw-bold">
-                            <?php echo $totalAdmin; ?>
-                          </h1>
+                          <h1 class="display-1 fw-bold">6</h1>
                       </div>
                       <div class="card-footer">
                         <p class="m-0 fw-bold">Admins</p>
@@ -90,12 +86,6 @@
                       $i = 0;
                       while($user = fgetcsv($fp)){
                         $i++;
-                        if($user[0] == "Admin"){
-                          $totalAdmin++; // Incrementing admin number decleared at the starting of the script
-                        }
-                        if($user[0] == "User"){
-                          $totalUser++; // Incrementing user number decleared at the starting of the script
-                        }
                     ?>
                         <tr>
                             <td><?php echo $i; ?></td>
@@ -103,7 +93,7 @@
                             <td><?php echo $user[3] ?></td>
                             <td><?php echo $user[0] ?></td>
                             <td>
-                              <a href="?update=<?php echo $i; ?>"><button class="btn btn-primary">Update</button></a>
+                              <a href="update_user.php?update=<?php echo $i - 1; ?>"><button class="btn btn-primary">Update</button></a>
                               <a href="?delete=<?php echo $i - 1; ?>"><button class="btn btn-danger">Remove</button></a>
                             </td>
                         </tr>

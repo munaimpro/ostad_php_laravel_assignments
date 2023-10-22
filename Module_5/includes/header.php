@@ -1,6 +1,6 @@
 <!-- PHP Code Start -->
 <?php
-    // Procedure with file
+    // Procedure with user file
     $filename = "C:/xampp/htdocs/ostad_php_laravel_assignments/Module_5/datafile/user.txt";
     $fp = fopen($filename, "a+");
 ?>
