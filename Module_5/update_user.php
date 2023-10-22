@@ -2,18 +2,27 @@
 <?php
     include("includes/header.php");
 
-    /*-- User Update Process --*/
+/*-- User Update Process --*/
     if(isset($_GET['update']) && $_GET['update'] != NULL){
-        $updateId = $_GET['update']; // Getting user id for update
-        $data = file($filename); // Getting file data as array
+    /*-- Getting user id to update --*/
+        $updateId = $_GET['update'];
 
-        // file_put_contents($filename, $data);
-        print_r($data);
-        echo "<b>" . $data[$updateId] . "</b>";
-        echo "<b>" . count($data) . "</b>";
-        for($i = 0; $i < count($data); $i++){
-            if($i == $updateId){
-                echo "Single";
+    /*-- Getting file data as array --*/
+        $data = file($filename); // 
+
+        if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])){
+        /*-- Password Encryption --*/
+            $userPassword = md5($_POST['userPassword']);
+            
+        /*-- Set new data to specific array index --*/
+            $data[$updateId] = "{$_POST['role']},{$_POST['firstName']},{$_POST['lastName']},{$_POST['userName']},{$_POST['mailAddress']},{$userPassword}\n";
+            
+        /*-- Inserting updated new array to the file --*/
+            $result = file_put_contents($filename, $data);
+            if($result !== false){
+                echo "<script>alert('User Role Updated Successfuly!')</script>";
+            } else{
+                echo "<script>alert('Something wend wrong!')</script>";
             }
         }
     }
@@ -34,9 +43,10 @@
 
               <div class="card-body p-3">
                   <!-- Form Start -->
-                  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+                  <form action="" method="POST">
                     <div class="row justify-content-center fs-5">
                     <?php
+                    if(isset($_GET['update']) && $_GET['update'] != NULL){
                       for($i = 0; $i < count($data); $i++){
                         if($i == $updateId){
                             $singleUserData = explode(",", $data[$i]);
@@ -45,7 +55,6 @@
                             <label for="firstName">First Name</label>
                             <input type="text" name="firstName" value="<?php echo $singleUserData[1]; ?>" class="form-control fs-5">
                         </div>
-                    <?php } } ?>
                         
                         <div class="col-12 mb-2">
                             <label for="lastName">Last Name</label>
@@ -69,11 +78,13 @@
                             <option value="User" <?php if($singleUserData[0] == "User"){ echo "selected"; } ?> >User</option>
                           </select>
                         </div>
+
+                        <input type="hidden" name="userPassword" value="<?php echo $singleUserData[5]; ?>">
                         
                         <div class="col-12 mt-5">
-                            <button class="btn btn-primary shadow-none text-white w-100 fs-5" type="submit" name="update">Update</button>
+                            <input class="btn btn-primary shadow-none text-white w-100 fs-5" type="submit" name="update" value="Update">
                         </div>
-                    <?php // } } ?>
+                    <?php } } } ?>
                     </div>
                 </form>
             <!-- Form End -->
