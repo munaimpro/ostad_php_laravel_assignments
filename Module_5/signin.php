@@ -33,12 +33,13 @@
                 /*-- Starting session and assigning value --*/
                     if(session_status() === PHP_SESSION_NONE){
                         session_start();
-                        $_SESSION["userRole"]     = $data[0];
-                        $_SESSION["firstName"]    = $data[1];
-                        $_SESSION["lastName"]     = $data[2];
-                        $_SESSION["userName"]     = $data[3];
-                        $_SESSION["userEmail"]    = $data[4];
-                        $_SESSION["userPassword"] = $data[5];
+                        $_SESSION["signin"]       = true;
+                        $_SESSION["userRole"]     = $singleUserData[0];
+                        $_SESSION["firstName"]    = $singleUserData[1];
+                        $_SESSION["lastName"]     = $singleUserData[2];
+                        $_SESSION["userName"]     = $singleUserData[3];
+                        $_SESSION["userEmail"]    = $singleUserData[4];
+                        $_SESSION["userPassword"] = $singleUserData[5];
 
                     /*-- Redirecting conditionally after signin --*/
                         if($_SESSION["userRole"] == "Admin"){

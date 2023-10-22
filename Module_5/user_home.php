@@ -1,6 +1,16 @@
 <!-- Header Start -->
 <?php
     include("includes/header.php");
+    
+    /*-- Getting file data as array --*/
+    $data = file($filename);
+
+    /*-- User Delete Process --*/
+    if(isset($_GET['delete']) && $_GET['delete'] != NULL){
+      $deleteId = $_GET['delete'];
+      unset($data[$deleteId]);
+      file_put_contents($filename, $data);
+    }
 ?>
 <!-- Header End -->
 
@@ -14,44 +24,47 @@
           </div>
         <!-- Alert Message End -->
         
-        <!-- User Details Start -->
+        <!-- User Details Section Start -->
           <div class="container-fluid mb-4">
               <div class="row text-uppercase">
-                <h2>Munaim Khan</h2>
-                <h5>Admin</h5>
+                <h2><?php echo $_SESSION['firstName'] ." ". $_SESSION['lastName'] ?></h2>
+                <h5><?php echo $_SESSION['userRole']; ?></h5>
               </div>
           </div>
-        <!-- User Detail End -->
+        <!-- User Detail Section End -->
 
-        <!-- Total User Start -->
+        <!-- Total User Section Start -->
           <div class="container mb-5 mt-5">
-            <div class="row">
+            <div class="row justify-content-center">
                 <!-- Total User -->
                 <div class="col-md-6 col-lg-6 col-12">
                     <div class="card">
                       <div class="card-body text-center">
-                          <h1 class="display-1 fw-bold">6</h1>
+                          <h1 class="display-1 fw-bold">
+                          <?php
+                            $count = 0;
+                            if($data){
+                              for($i = 0; $i < count($data); $i++){
+                                $singleUserData = explode(",", $data[$i]);
+                                if($singleUserData[0] == "User"){
+                                  $count++;
+                                }
+                              }
+                              echo $count;
+                            } else{
+                              echo "0";
+                            }
+                          ?>
+                          </h1>
                       </div>
                       <div class="card-footer">
-                        <p class="m-0 fw-bold">Users</p>
+                        <p class="m-0 fw-bold">Total User</p>
                       </div>
                     </div>
                 </div>
-
-                <!-- Total Admin -->
-                <div class="col-md-6 col-lg-6 col-12">
-                    <div class="card">
-                      <div class="card-body text-center">
-                          <h1 class="display-1 fw-bold">6</h1>
-                      </div>
-                      <div class="card-footer">
-                        <p class="m-0 fw-bold">Admins</p>
-                      </div>
-                    </div>
-                </div>
-            </div>
+              </div>
           </div>
-        <!-- Total User End -->
+        <!-- Total User Section End -->
 
         <!-- Home Content Start -->
           <div class="card rounded">
@@ -68,23 +81,20 @@
                             <th>Serial No</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Role</th>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                      $i = 0;
+                      while($user = fgetcsv($fp)){
+                        $i++;
+                    ?>
                         <tr>
-                            <td>1</td>
-                            <td>Firstname Lastname</td>
-                            <td>email@email.com</td>
-                            <td>role1</td>
+                            <td><?php echo $i; ?></td>
+                            <td><?php echo $user[1] . " " . $user[2] ?></td>
+                            <td><?php echo $user[4] ?></td>
                         </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td>Firstname Lastname</td>
-                            <td>email@email.com</td>
-                            <td>role1</td>
-                        </tr>
+                    <?php } ?>
                     </tbody>
                   </table>
               </div>

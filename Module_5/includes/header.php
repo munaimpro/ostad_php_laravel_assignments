@@ -1,8 +1,17 @@
 <!-- PHP Code Start -->
 <?php
-    // Procedure with user file
+    session_start();
+    
+    /*-- Procedure with user file --*/
     $filename = "C:/xampp/htdocs/ostad_php_laravel_assignments/Module_5/datafile/user.txt";
     $fp = fopen($filename, "a+");
+
+    /*-- Logout Porcess --*/
+    if(isset($_GET['action']) && $_GET['action'] == "logout"){
+      session_unset();
+      session_destroy();
+      echo "<script>location='signin.php'</script>";
+    }
 ?>
 <!-- PHP Code End -->
 
