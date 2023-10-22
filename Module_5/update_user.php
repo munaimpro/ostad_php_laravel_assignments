@@ -11,6 +11,9 @@
         $data = file($filename); 
 
         if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])){
+        /*-- Password Encryption --*/
+            $userPassword = md5($_POST['userPassword']);
+            
         /*-- Set new data to specific array index --*/
             $data[$updateId] = "{$_POST['role']},{$_POST['firstName']},{$_POST['lastName']},{$_POST['userName']},{$_POST['mailAddress']},{$userPassword}\n";
             
@@ -24,6 +27,11 @@
             }
         }
     }
+
+    /*-- User Access Control Process --*/
+      if($_SESSION['userRole'] == "User"){
+        echo"<script>window.location='user_home.php'</script>";
+      }
 ?>
 <!-- Header End -->
 
@@ -35,7 +43,6 @@
               <div class="card-header text-white fw-bold d-flex">
               <!-- Card Title Start -->
                   <h5 class="card-title p-2 me-auto mb-0 text-uppercase">Update User</h5>
-                  <p class="card-title p-2 ms-auto mb-0 text-uppercase">Munaim Khan</p>
               <!-- Card Title End -->
               </div>
 

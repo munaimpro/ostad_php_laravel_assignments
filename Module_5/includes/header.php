@@ -2,15 +2,20 @@
 <?php
     session_start();
     
-    /*-- Procedure with user file --*/
+/*-- Procedure with user file --*/
     $filename = "C:/xampp/htdocs/ostad_php_laravel_assignments/Module_5/datafile/user.txt";
     $fp = fopen($filename, "a+");
 
-    /*-- Logout Porcess --*/
+/*-- Logout Porcess --*/
     if(isset($_GET['action']) && $_GET['action'] == "logout"){
       session_unset();
       session_destroy();
       echo "<script>location='signin.php'</script>";
+    }
+
+/*-- Login Access Control Process --*/
+    if($_SESSION['userSignin'] != true){
+      echo"<script>window.location='signin.php'</script>";
     }
 ?>
 <!-- PHP Code End -->
@@ -36,12 +41,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav ms-auto text-uppercase">
+              <?php if($_SESSION['userRole'] == "Admin"){ ?>
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="admin_home.php">Home</a>
                 </li>
+              <?php } else{ ?>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="user_home.php">Home</a>
+                </li>
+              <?php } ?>
+              <?php if($_SESSION['userRole'] == "Admin"){ ?>
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="users.php">Users</a>
                 </li>
+              <?php } ?>
                 <li class="nav-item">
                   <a class="nav-link" href="admin_home.php?action=logout">Logout</a>
                 </li>

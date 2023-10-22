@@ -1,40 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Home - User Authentication and Role Management System</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container-fluid">
-      <div class="row">
-        <!-- Navigation Menu Start -->
-        <nav class="navbar navbar-expand-lg bg-white shadow-sm fw-bold">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#"><h3>User Authentication and Role Management System</h3></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav ms-auto text-uppercase">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="admin_home.php">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="users.php">Users</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="admin_home.php?action=logout">Logout</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <!-- Navigation Menu End -->
-      </div>
-    </div>
+<!-- Header Start -->
+<?php
+    include("includes/header.php");
+    
+  /*-- Getting file data as array --*/
+    $data = file($filename);
+
+  /*-- User Delete Process --*/
+    if(isset($_GET['delete']) && $_GET['delete'] != NULL){
+      $deleteId = $_GET['delete'];
+      unset($data[$deleteId]);
+      file_put_contents($filename, $data);
+    }
+
+  /*-- User Access Control Process --*/
+    if($_SESSION['userRole'] == "User"){
+      echo"<script>window.location='user_home.php'</script>";
+    }
+
+?>
+<!-- Header End -->
 
     <div class="container-fluid my-5">
       <div class="row d-flex justify-content-center min-vh-100 m-1">
@@ -48,7 +32,6 @@
               </div>
 
               <div class="card-body p-3">
-                  <button class="btn btn-success float-end">New User</button>
                   <table class="table w-100 text-center my-5">
                     <thead>
                         <tr>
@@ -60,27 +43,22 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                      $i = 0;
+                      while($user = fgetcsv($fp)){
+                        $i++;
+                    ?>
                         <tr>
-                            <td>1</td>
-                            <td>Firstname Lastname</td>
-                            <td>email@email.com</td>
-                            <td>role1</td>
+                            <td><?php echo $i; ?></td>
+                            <td><?php echo $user[1] . " " . $user[2] ?></td>
+                            <td><?php echo $user[4] ?></td>
+                            <td><?php echo $user[0] ?></td>
                             <td>
-                              <a href=""><button class="btn btn-primary">Update</button></a>
-                              <a href=""><button class="btn btn-danger">Remove</button></a>
+                              <a href="update_user.php?update=<?php echo $i - 1; ?>"><button class="btn btn-primary">Update</button></a>
+                              <a onclick="return confirm('Are you sure to Delete!')" href="return confirm('Do you want to delete this user?') ?delete=<?php echo $i - 1; ?>"><button class="btn btn-danger">Remove</button></a>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>1</td>
-                            <td>Firstname Lastname</td>
-                            <td>email@email.com</td>
-                            <td>role1</td>
-                            <td>
-                              <a href=""><button class="btn btn-primary">Update</button></a>
-                              <a href=""><button class="btn btn-danger">Remove</button></a>
-                            </td>
-                        </tr>
+                    <?php } ?>
                     </tbody>
                   </table>
               </div>

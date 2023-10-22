@@ -33,7 +33,7 @@
                 /*-- Starting session and assigning value --*/
                     if(session_status() === PHP_SESSION_NONE){
                         session_start();
-                        $_SESSION["signin"]       = true;
+                        $_SESSION["userSignin"]   = true;
                         $_SESSION["userRole"]     = $singleUserData[0];
                         $_SESSION["firstName"]    = $singleUserData[1];
                         $_SESSION["lastName"]     = $singleUserData[2];

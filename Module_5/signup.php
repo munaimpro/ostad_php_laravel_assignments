@@ -2,7 +2,7 @@
 <?php
     $message = "";
 
-    // Procedure with file
+    /*-- Procedure with file --*/
     $filename = "C:/xampp/htdocs/ostad_php_laravel_assignments/Module_5/datafile/user.txt";
     $fp = fopen($filename, "a+");
 
@@ -13,7 +13,7 @@
         $userName     = $_POST['userName'];
         $userEmail    = $_POST['userEmail'];
         $userPassword = $_POST['userPassword'];
-        $userRole     = "user"; // Default signup role
+        $userRole     = "User"; // Default signup role
      
     /*-- Validation Process --*/
         if(empty($firstName) || empty($lastName) || empty($userName) || empty($userEmail) || empty($userPassword)){

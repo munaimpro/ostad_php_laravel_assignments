@@ -2,15 +2,21 @@
 <?php
     include("includes/header.php");
     
-    /*-- Getting file data as array --*/
+  /*-- Getting file data as array --*/
     $data = file($filename);
 
-    /*-- User Delete Process --*/
+  /*-- User Delete Process --*/
     if(isset($_GET['delete']) && $_GET['delete'] != NULL){
       $deleteId = $_GET['delete'];
       unset($data[$deleteId]);
       file_put_contents($filename, $data);
     }
+
+  /*-- User Access Control Process --*/
+    if($_SESSION['userRole'] == "User"){
+      echo"<script>window.location='user_home.php'</script>";
+    }
+
 ?>
 <!-- Header End -->
 
@@ -27,8 +33,8 @@
         <!-- User Details Section Start -->
           <div class="container-fluid mb-4">
               <div class="row text-uppercase">
-                <h2>Munaim Khan</h2>
-                <h5>Admin</h5>
+                <h2><?php echo $_SESSION['firstName'] ." ". $_SESSION['lastName'] ?></h2>
+                <h5><?php echo $_SESSION['userRole']; ?></h5>
               </div>
           </div>
         <!-- User Detail Section End -->
@@ -125,7 +131,7 @@
                             <td><?php echo $user[0] ?></td>
                             <td>
                               <a href="update_user.php?update=<?php echo $i - 1; ?>"><button class="btn btn-primary">Update</button></a>
-                              <a onclick="return confirm('Are you sure to Delete!')" href="return confirm('Do you want to delete this user?') ?delete=<?php echo $i - 1; ?>"><button class="btn btn-danger">Remove</button></a>
+                              <a onclick="return confirm('Are you sure to Delete!')" href="?delete=<?php echo $i - 1; ?>"><button class="btn btn-danger">Remove</button></a>
                             </td>
                         </tr>
                     <?php } ?>
