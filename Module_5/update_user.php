@@ -1,6 +1,8 @@
-<!-- Header Start -->
+<!-- PHP Code Start -->
 <?php
+/*-- Header Start --*/
     include("includes/header.php");
+/*-- Header Start --*/
 
 /*-- User Update Process --*/
     if(isset($_GET['update']) && $_GET['update'] != NULL){
@@ -11,11 +13,8 @@
         $data = file($filename); 
 
         if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])){
-        /*-- Password Encryption --*/
-            $userPassword = md5($_POST['userPassword']);
-            
         /*-- Set new data to specific array index --*/
-            $data[$updateId] = "{$_POST['role']},{$_POST['firstName']},{$_POST['lastName']},{$_POST['userName']},{$_POST['mailAddress']},{$userPassword}\n";
+            $data[$updateId] = "{$_POST['role']},{$_POST['firstName']},{$_POST['lastName']},{$_POST['userName']},{$_POST['mailAddress']},{$_POST['userPassword']}";
             
         /*-- Inserting updated new array to the file --*/
             $result = file_put_contents($filename, $data);
@@ -26,6 +25,12 @@
                 echo "<script>alert('Something wend wrong!')</script>";
             }
         }
+    } else{
+        if($_SESSION['userRole'] == "User"){
+            echo"<script>window.location='user_home.php'</script>";
+        } else{
+            echo"<script>window.location='admin_home.php'</script>";
+        }
     }
 
     /*-- User Access Control Process --*/
@@ -33,9 +38,10 @@
         echo"<script>window.location='user_home.php'</script>";
       }
 ?>
-<!-- Header End -->
+<!-- PHP Code End -->
 
-    <div class="container-fluid mt-5">
+<!-- Home Content Start -->
+    <div class="container-fluid content-body">
       <div class="row d-flex justify-content-center min-vh-100 m-1">
         <div class="col-12 p-2">
         <!-- Card Start -->
@@ -58,22 +64,22 @@
                     ?>
                         <div class="col-12 mb-2">
                             <label for="firstName">First Name</label>
-                            <input type="text" name="firstName" value="<?php echo $singleUserData[1]; ?>" class="form-control fs-5">
+                            <input type="text" readonly name="firstName" value="<?php echo $singleUserData[1]; ?>" class="form-control fs-5">
                         </div>
                         
                         <div class="col-12 mb-2">
                             <label for="lastName">Last Name</label>
-                            <input type="text" name="lastName" value="<?php echo $singleUserData[2]; ?>" class="form-control fs-5">
+                            <input type="text" readonly name="lastName" value="<?php echo $singleUserData[2]; ?>" class="form-control fs-5">
                         </div>
 
                         <div class="col-12 mb-2">
                             <label for="userName">Username</label>
-                            <input type="text" name="userName" value="<?php echo $singleUserData[3]; ?>" class="form-control fs-5">
+                            <input type="text" readonly name="userName" value="<?php echo $singleUserData[3]; ?>" class="form-control fs-5">
                         </div>
 
                         <div class="col-12 mb-2">
                             <label for="mailAddress">Email</label>
-                            <input type="text" name="mailAddress" value="<?php echo $singleUserData[4]; ?>" class="form-control fs-5">
+                            <input type="text" readonly name="mailAddress" value="<?php echo $singleUserData[4]; ?>" class="form-control fs-5">
                         </div>
 
                         <div class="col-12 mb-2">
@@ -99,9 +105,11 @@
         </div>
       </div>
     </div>
+<!-- Home Content End -->
 
+  
 <!-- Footer Start -->
 <?php
-    include("includes/footer.php");
+  include("includes/footer.php");
 ?>
 <!-- Footer End -->

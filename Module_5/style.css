@@ -4,16 +4,11 @@
     box-sizing: border-box;
 }
 
-a{
-    color: #8a2be2 !important;
+.content-body{
+    margin-top: 100px;
 }
 
-.card-header{
-    background: #8a2be2;
-
-}
-
-.system-title, .btn-primary{
+.btn-primary{
     background-color: #8a2be2 !important;
     border-color: #8a2be2 !important;
 }
@@ -21,6 +16,11 @@ a{
 .btn-primary:hover{
     background-color: #691bb3 !important;
     border-color: #691bb3 !important;
+}
+
+.card-header, .card-footer{
+    background-color: #8a2be2;
+    color: #ffffff;
 }
 
 input, select{
@@ -31,15 +31,20 @@ input:focus{
     border-color: #8a2be2 !important;
 }
 
-.card-body{
-    color: #8a2be2;
-}
-
 label{
     position: relative;
     top: 14px;
     background: #ffffff;
+    color: #691bb3;
     margin: 0 12px;
     padding: 0 0px;
-    font-size: 18px;
+    font-size: 15px;
+}
+
+::after{
+    display: none !important;
+}
+
+form a{
+    color: #8a2be2 !important;
 }

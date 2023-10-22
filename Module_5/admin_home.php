@@ -1,7 +1,9 @@
-<!-- Header Start -->
+<!-- PHP Code Start -->
 <?php
+  /*-- Header Start --*/
     include("includes/header.php");
-    
+  /*-- Header End --*/
+
   /*-- Getting file data as array --*/
     $data = file($filename);
 
@@ -18,14 +20,15 @@
     }
 
 ?>
-<!-- Header End -->
+<!-- PHP Code End -->
 
-    <div class="container-fluid">
+  <!-- Home Content Start -->
+    <div class="container-fluid content-body">
       <div class="row d-flex justify-content-center min-vh-100 m-1">
         <div class="col-12 p-2">
         <!-- Alert Message Start -->
           <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Hi Munaim!</strong> Welcome to your dashboard
+            <strong>Hi <?php echo $_SESSION['firstName']; ?>!</strong> Welcome to your dashboard
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         <!-- Alert Message End -->
@@ -143,6 +146,7 @@
         </div>
       </div>
     </div>
+  <!-- Home Content End -->
 
 <!-- Footer Start -->
 <?php

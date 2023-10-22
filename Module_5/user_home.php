@@ -1,7 +1,9 @@
-<!-- Header Start -->
+<!-- PHP Code Start -->
 <?php
+    /*-- Header Start --*/
     include("includes/header.php");
-    
+    /*-- Header End --*/
+
     /*-- Getting file data as array --*/
     $data = file($filename);
 
@@ -12,14 +14,15 @@
       file_put_contents($filename, $data);
     }
 ?>
-<!-- Header End -->
-
-    <div class="container-fluid">
+<!-- PHP Code End -->
+  
+  <!-- Home Content Start -->
+    <div class="container-fluid content-body">
       <div class="row d-flex justify-content-center min-vh-100 m-1">
         <div class="col-12 p-2">
         <!-- Alert Message Start -->
           <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Hi Munaim!</strong> Welcome to your dashboard
+            <strong>Hi <?php echo $_SESSION['firstName']; ?>!</strong> Welcome to your dashboard
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
         <!-- Alert Message End -->
@@ -28,7 +31,7 @@
           <div class="container-fluid mb-4">
               <div class="row text-uppercase">
                 <h2><?php echo $_SESSION['firstName'] ." ". $_SESSION['lastName'] ?></h2>
-                <h5><?php echo $_SESSION['userRole']; ?></h5>
+                <p class="fw-medium"><?php echo $_SESSION['userRole']; ?></p>
               </div>
           </div>
         <!-- User Detail Section End -->
@@ -38,7 +41,7 @@
             <div class="row justify-content-center">
                 <!-- Total User -->
                 <div class="col-md-6 col-lg-6 col-12">
-                    <div class="card">
+                    <div class="card total-user">
                       <div class="card-body text-center">
                           <h1 class="display-1 fw-bold">
                           <?php
@@ -58,7 +61,7 @@
                           </h1>
                       </div>
                       <div class="card-footer">
-                        <p class="m-0 fw-bold">Total User</p>
+                        <p class="m-0 fw-bold text-uppercase">Users</p>
                       </div>
                     </div>
                 </div>
@@ -66,9 +69,9 @@
           </div>
         <!-- Total User Section End -->
 
-        <!-- Home Content Start -->
+        <!-- User List Start -->
           <div class="card rounded">
-              <div class="card-header text-white fw-bold d-flex">
+              <div class="card-header fw-bold d-flex">
               <!-- Card Title Start -->
                   <h5 class="card-title p-1 me-auto mb-0 text-uppercase">Our Users</h5>
               <!-- Card Title End -->
@@ -99,13 +102,15 @@
                   </table>
               </div>
           </div>
-        <!-- Home Content End -->
+        <!-- User List End -->
         </div>
       </div>
     </div>
+  <!-- Home Content End -->
 
+  
 <!-- Footer Start -->
 <?php
-    include("includes/footer.php");
+  include("includes/footer.php");
 ?>
 <!-- Footer End -->

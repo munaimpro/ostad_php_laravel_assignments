@@ -1,7 +1,9 @@
-<!-- Header Start -->
+<!-- PHP Code Start -->
 <?php
+  /*-- Header Start --*/
     include("includes/header.php");
-    
+  /*-- Header End --*/
+
   /*-- Getting file data as array --*/
     $data = file($filename);
 
@@ -18,12 +20,12 @@
     }
 
 ?>
-<!-- Header End -->
+<!-- PHP Code End -->
 
-    <div class="container-fluid my-5">
+  <!-- Home Content Start -->
+    <div class="container-fluid mb-5 content-body">
       <div class="row d-flex justify-content-center min-vh-100 m-1">
         <div class="col-12 p-2">
-        <!-- Home Content Start -->
           <div class="card rounded">
               <div class="card-header text-white fw-bold d-flex">
               <!-- Card Title Start -->
@@ -55,7 +57,7 @@
                             <td><?php echo $user[0] ?></td>
                             <td>
                               <a href="update_user.php?update=<?php echo $i - 1; ?>"><button class="btn btn-primary">Update</button></a>
-                              <a onclick="return confirm('Are you sure to Delete!')" href="return confirm('Do you want to delete this user?') ?delete=<?php echo $i - 1; ?>"><button class="btn btn-danger">Remove</button></a>
+                              <a onclick="return confirm('Are you sure to Delete!')" href="?delete=<?php echo $i - 1; ?>"><button class="btn btn-danger">Remove</button></a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -63,11 +65,14 @@
                   </table>
               </div>
           </div>
-        <!-- Home Content End -->
         </div>
       </div>
     </div>
+  <!-- Home Content End -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+  
+<!-- Footer Start -->
+<?php
+  include("includes/footer.php");
+?>
+<!-- Footer End -->
