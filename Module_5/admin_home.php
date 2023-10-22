@@ -2,18 +2,13 @@
 <?php
     include("includes/header.php");
     
-    /*-- Calculating Total Admins and Users --*/
-    $totalAdmin = 0;
-    $totalUser  = 0;
-
-    // while($line = fgetcsv($fp)){
-    //   if($line[0] == "Admin"){
-    //     $totalAdmin++;
-    //   }
-    //   if($line[0] == "User"){
-    //     $totalUser++;
-    //   }
-    // }
+    /*-- User Delete Process --*/
+    if(isset($_GET['delete']) && $_GET['delete'] != NULL){
+      $deleteId = $_GET['delete'];
+      $data = file($filename);
+      unset($data[$deleteId]);
+      file_put_contents($filename, $data);
+    }
 ?>
 <!-- Header End -->
 
@@ -108,8 +103,8 @@
                             <td><?php echo $user[3] ?></td>
                             <td><?php echo $user[0] ?></td>
                             <td>
-                              <a href=""><button class="btn btn-primary">Update</button></a>
-                              <a href=""><button class="btn btn-danger">Remove</button></a>
+                              <a href="?update=<?php echo $i; ?>"><button class="btn btn-primary">Update</button></a>
+                              <a href="?delete=<?php echo $i - 1; ?>"><button class="btn btn-danger">Remove</button></a>
                             </td>
                         </tr>
                     <?php } ?>

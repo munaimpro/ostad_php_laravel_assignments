@@ -1,11 +1,7 @@
-Admin,Sharjil,Muhammad,sharjil,sharjil@gmail.com,21b8adf19ee3ef88e8d01eca8f74de64
-Admin,Muhammad.,Khan,admin,khanmail2599@gmail.com,561b5e5e84904ce3bc78bf4a19f32383
 User,Md.,Khan,admin,khanmail2599@gmail.com,f29d487d346740b0cf85938b78b135db
 User,Md.,Khan,admin,khanmail2599@gmail.com,9e7fecc98165709d1cfc0650a309b080
 User,Md.,Khan,admin,khanmail2599@gmail.com,9a4047e14b085e880e5eaf00f58b3540
 User,Md.,Khan,admin,khanmail2599@gmail.com,527848b310b793e41e0616f38ee85059
-Md.,Khan,admin,khanmail2599@gmail.com,527848b310b793e41e0616f38ee85059
-Md.,Khan,admin,khanmail2599@gmail.com,66952c6203ae23242590c0061675234d
-Md.,Khan,admin,khanmail2599@gmail.com,66952c6203ae23242590c0061675234d
-Md.,Khan,admin,khanmail2599@gmail.com,f8b1644ac14529df029ac52b7b762493
-Md.,Khan,admin,khanmail2599@gmail.com,f8b1644ac14529df029ac52b7b762493
+Admin,Md.,Khan,admin,khanmail2599@gmail.com,527848b310b793e41e0616f38ee85059
+Admin,Md.,Khan,admin,khanmail2599@gmail.com,66952c6203ae23242590c0061675234d
+Admin,Md.,Khan,admin,khanmail2599@gmail.com,66952c6203ae23242590c0061675234d
