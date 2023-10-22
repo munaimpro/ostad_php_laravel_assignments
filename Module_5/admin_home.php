@@ -2,10 +2,12 @@
 <?php
     include("includes/header.php");
     
+    /*-- Getting file data as array --*/
+    $data = file($filename);
+
     /*-- User Delete Process --*/
     if(isset($_GET['delete']) && $_GET['delete'] != NULL){
       $deleteId = $_GET['delete'];
-      $data = file($filename);
       unset($data[$deleteId]);
       file_put_contents($filename, $data);
     }
@@ -38,7 +40,22 @@
                 <div class="col-md-6 col-lg-6 col-12">
                     <div class="card">
                       <div class="card-body text-center">
-                          <h1 class="display-1 fw-bold">6</h1>
+                          <h1 class="display-1 fw-bold">
+                          <?php
+                            $count = 0;
+                            if($data){
+                              for($i = 0; $i < count($data); $i++){
+                                $singleUserData = explode(",", $data[$i]);
+                                if($singleUserData[0] == "User"){
+                                  $count++;
+                                }
+                              }
+                              echo $count;
+                            } else{
+                              echo "0";
+                            }
+                          ?>
+                          </h1>
                       </div>
                       <div class="card-footer">
                         <p class="m-0 fw-bold">Users</p>
@@ -50,7 +67,22 @@
                 <div class="col-md-6 col-lg-6 col-12">
                     <div class="card">
                       <div class="card-body text-center">
-                          <h1 class="display-1 fw-bold">6</h1>
+                          <h1 class="display-1 fw-bold">
+                          <?php
+                            $count = 0;
+                            if($data){
+                              for($i = 0; $i < count($data); $i++){
+                                $singleUserData = explode(",", $data[$i]);
+                                if($singleUserData[0] == "Admin"){
+                                  $count++;
+                                }
+                              }
+                              echo $count;
+                            } else{
+                              echo "0";
+                            }
+                          ?>
+                          </h1>
                       </div>
                       <div class="card-footer">
                         <p class="m-0 fw-bold">Admins</p>
@@ -70,7 +102,6 @@
               </div>
 
               <div class="card-body p-3">
-                  <button class="btn btn-success float-end">New User</button>
                   <table class="table w-100 text-center my-5">
                     <thead>
                         <tr>
@@ -90,11 +121,11 @@
                         <tr>
                             <td><?php echo $i; ?></td>
                             <td><?php echo $user[1] . " " . $user[2] ?></td>
-                            <td><?php echo $user[3] ?></td>
+                            <td><?php echo $user[4] ?></td>
                             <td><?php echo $user[0] ?></td>
                             <td>
                               <a href="update_user.php?update=<?php echo $i - 1; ?>"><button class="btn btn-primary">Update</button></a>
-                              <a href="?delete=<?php echo $i - 1; ?>"><button class="btn btn-danger">Remove</button></a>
+                              <a onclick="return confirm('Are you sure to Delete!')" href="return confirm('Do you want to delete this user?') ?delete=<?php echo $i - 1; ?>"><button class="btn btn-danger">Remove</button></a>
                             </td>
                         </tr>
                     <?php } ?>

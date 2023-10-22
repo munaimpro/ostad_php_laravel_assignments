@@ -1,3 +1,59 @@
+<!-- PHP Code Start -->
+<?php
+    $message = "";
+
+    // Procedure with file
+    $filename = "C:/xampp/htdocs/ostad_php_laravel_assignments/Module_5/datafile/user.txt";
+    $fp = fopen($filename, "a+");
+
+    if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])){
+    /*-- Getting Values from user --*/
+        $userName     = trim($_POST['userName']);
+        $userEmail    = trim($_POST['userEmail']);
+        $userPassword = trim($_POST['userPassword']);
+     
+    /*-- Validation Process --*/
+        if(empty($userName) || empty($userEmail) || empty($userPassword)){
+            $message = "<div class='alert alert-danger m-3'><strong>Error! </strong>Missing Sufficient Information</div>";
+        } elseif(!filter_var(trim($userEmail), FILTER_VALIDATE_EMAIL)){
+            $message = "<div class='alert alert-danger m-3'><strong>Error! </strong>Invalid Email Address</div>";
+        } else{
+        /*-- Password Encryption --*/ 
+            $userPassword = md5($userPassword);
+
+        /*-- Getting file data as array --*/
+            $data = file($filename);
+
+        /*-- Checking user data available or not --*/
+            for($i = 0; $i < count($data); $i++){
+                $singleUserData = explode(",", $data[$i]);
+                if($singleUserData[3] != $userName || $singleUserData[4] != $userEmail || trim($singleUserData[5]) != $userPassword){
+                    $message = "<div class='alert alert-danger m-3'><strong>Error! </strong>Data not found</div>";
+                } else{
+                /*-- Starting session and assigning value --*/
+                    if(session_status() === PHP_SESSION_NONE){
+                        session_start();
+                        $_SESSION["userRole"]     = $data[0];
+                        $_SESSION["firstName"]    = $data[1];
+                        $_SESSION["lastName"]     = $data[2];
+                        $_SESSION["userName"]     = $data[3];
+                        $_SESSION["userEmail"]    = $data[4];
+                        $_SESSION["userPassword"] = $data[5];
+
+                    /*-- Redirecting conditionally after signin --*/
+                        if($_SESSION["userRole"] == "Admin"){
+                            echo"<script>window.location='admin_home.php'</script>";
+                        } else{
+                            echo"<script>window.location='user_home.php'</script>";
+                        }
+                    }
+                }
+            }
+        }
+    }
+?>
+<!-- PHP Code End -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +74,14 @@
                     <h3 class="card-title p-3 m-auto text-center">Sign In</h3>
                 <!-- Card Title End -->
                 </div>
+                
+                <!-- Message Start -->
+                <?php
+                    if(!empty($message)){
+                        echo $message;
+                    }
+                ?>
+                <!-- Message End -->
 
                 <div class="card-body p-3">
                 <!-- Form Start -->
@@ -28,15 +92,15 @@
                             </div>
 
                             <div class="col-12 mb-2">
-                                <input type="text" name="mailAddress" placeholder="Email" class="form-control fs-5">
+                                <input type="text" name="userEmail" placeholder="Email" class="form-control fs-5">
                             </div>
 
                             <div class="col-12 mb-2">
-                                <input type="text" name="userPassword" placeholder="Password" class="form-control fs-5">
+                                <input type="password" name="userPassword" placeholder="Password" class="form-control fs-5">
                             </div>
                             
                             <div class="col-12 mt-5">
-                                <button class="btn btn-primary shadow-none text-white w-100 fs-5" type="submit" name="signup">Sign In</button>
+                                <button class="btn btn-primary shadow-none text-white w-100 fs-5" type="submit" name="signin">Sign In</button>
                             </div>
 
                             <div class="col-6 mt-5">

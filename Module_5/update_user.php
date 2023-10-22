@@ -8,12 +8,9 @@
         $updateId = $_GET['update'];
 
     /*-- Getting file data as array --*/
-        $data = file($filename); // 
+        $data = file($filename); 
 
         if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])){
-        /*-- Password Encryption --*/
-            $userPassword = md5($_POST['userPassword']);
-            
         /*-- Set new data to specific array index --*/
             $data[$updateId] = "{$_POST['role']},{$_POST['firstName']},{$_POST['lastName']},{$_POST['userName']},{$_POST['mailAddress']},{$userPassword}\n";
             
@@ -21,6 +18,7 @@
             $result = file_put_contents($filename, $data);
             if($result !== false){
                 echo "<script>alert('User Role Updated Successfuly!')</script>";
+                echo "<script>window.location='admin_home.php'</script>";
             } else{
                 echo "<script>alert('Something wend wrong!')</script>";
             }

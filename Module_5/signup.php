@@ -7,11 +7,6 @@
     $fp = fopen($filename, "a+");
 
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])){
-        // $i = 0;
-        // while($line = fgetcsv($fp)){
-        //     $i++;
-        //     echo "sl - " . $i . " Name - " . $line[0] . " " . $line[1] . "<br/>";
-        // }
     /*-- Getting Values from user --*/
         $firstName    = $_POST['firstName'];
         $lastName     = $_POST['lastName'];
