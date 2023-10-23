@@ -51,8 +51,6 @@
                     $_SESSION["userName"]     = $singleUserData[3];
                     $_SESSION["userEmail"]    = $singleUserData[4];
                     $_SESSION["userPassword"] = $singleUserData[5];
-
-                    echo $_SESSION["userId"];
                 /*-- Redirecting conditionally after signin --*/
                     if($_SESSION["userRole"] == "Admin"){
                         echo"<script>window.location='admin_home.php'</script>";

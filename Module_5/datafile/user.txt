@@ -3,5 +3,3 @@ Admin,Raihanul,Ikram,raihanul,raihanul@gmail.com,25d55ad283aa400af464c76d713c07a
 User,Fayaz,Ahmed,fayaz,fayaz@yahoo.com,25d55ad283aa400af464c76d713c07ad
 Admin,Rashed,Mahmud,rashed,rashed23@gmail.com,25d55ad283aa400af464c76d713c07ad
 User,Nurul,Karim,nurul,karim55@gmail.com,25d55ad283aa400af464c76d713c07ad
-"
-User",Faisal,Kabir,faisal,faisal@gmail.com,25d55ad283aa400af464c76d713c07ad
