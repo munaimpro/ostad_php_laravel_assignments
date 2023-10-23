@@ -48,7 +48,7 @@
             ];
         
         /*-- Inserting data into file --*/
-            $result = fputcsv($fp, $userDetails,",","\""); 
+            $result = fputcsv($fp, $userDetails, ",");
 
             if($result !== false){ ?>
                 <script>window.location='signin.php'</script>
