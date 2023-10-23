@@ -30,7 +30,7 @@
     /*-- Validation Process --*/
         if(empty($firstName) || empty($lastName) || empty($userName) || empty($userEmail) || empty($userPassword)){
             $message = "<div class='alert alert-danger m-3'><strong>Error! </strong>Missing Sufficient Information</div>";
-        } elseif(strlen(trim($userName)) < 3){
+        } elseif(strlen(trim($userName)) < 4){
             $message = "<div class='alert alert-danger m-3'><strong>Error! </strong>Username is too short</div>";
         } elseif(!filter_var(trim($userEmail), FILTER_VALIDATE_EMAIL)){
             $message = "<div class='alert alert-danger m-3'><strong>Error! </strong>Invalid Email Address</div>";
