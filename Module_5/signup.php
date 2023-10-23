@@ -1,10 +1,22 @@
 <!-- PHP Code Start -->
 <?php
-    $message = "";
+    /*-- Starting session --*/
+    session_start();
+
+    /*-- Login Access Control Process --*/
+    if(isset($_SESSION["userSignin"]) && $_SESSION["userSignin"] === true){
+        if ($_SESSION["userRole"] == "Admin") {
+            header('Location: admin_home.php');
+        } else {
+            header('Location: user_home.php');
+        }
+    }
 
     /*-- Procedure with file --*/
     $filename = "C:/xampp/htdocs/ostad_php_laravel_assignments/Module_5/datafile/user.txt";
     $fp = fopen($filename, "a+");
+
+    $message = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])){
     /*-- Getting Values from user --*/

@@ -1,7 +1,13 @@
 <!-- PHP Code Start -->
 <?php
     session_start();
-    
+
+/*-- Login Access Control Process --*/
+    if(!isset($_SESSION["userSignin"]) || $_SESSION["userSignin"] != true) {
+      echo "<script>window.location='signin.php'</script>";
+      exit();
+    }
+
 /*-- Procedure with user file --*/
     $filename = "C:/xampp/htdocs/ostad_php_laravel_assignments/Module_5/datafile/user.txt";
     $fp = fopen($filename, "a+");
@@ -12,11 +18,6 @@
       session_destroy();
       echo "<script>location='signin.php'</script>";
     }
-
-/*-- Login Access Control Process --*/
-    if($_SESSION['userSignin'] != true){
-      echo"<script>window.location='signin.php'</script>";
-    }
 ?>
 <!-- PHP Code End -->
 
@@ -25,7 +26,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Authentication and Role Management System</title>
+    <?php
+      $path = $_SERVER['SCRIPT_FILENAME'];
+      $current = basename($path, ".php");
+    ?>
+    <title>
+      <?php 
+        if($current == "admin_home"){
+          echo"Admin-";
+        } elseif($current == "user_home"){
+          echo "Home-";
+        } elseif($current == "users"){
+          echo "All User-";
+        } else{
+          echo "Update User-";
+        }
+      ?>User Authentication and Role Management System
+    </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">

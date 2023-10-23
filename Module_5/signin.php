@@ -1,10 +1,22 @@
 <!-- PHP Code Start -->
 <?php
-    $message = "";
+    /*-- Starting session --*/
+    session_start();
 
-    // Procedure with file
+    /*-- Login Access Control Process --*/
+    if(isset($_SESSION["userSignin"]) && $_SESSION["userSignin"] === true){
+        if ($_SESSION["userRole"] == "Admin") {
+            header('Location: admin_home.php');
+        } else {
+            header('Location: user_home.php');
+        }
+    }
+
+    /*-- Procedure with file --*/
     $filename = "C:/xampp/htdocs/ostad_php_laravel_assignments/Module_5/datafile/user.txt";
     $fp = fopen($filename, "a+");
+
+    $message = "";
 
     if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])){
     /*-- Getting Values from user --*/
@@ -31,22 +43,21 @@
                     $message = "<div class='alert alert-danger m-3'><strong>Error! </strong>Data not found</div>";
                 } else{
                 /*-- Starting session and assigning value --*/
-                    if(session_status() === PHP_SESSION_NONE){
-                        session_start();
-                        $_SESSION["userSignin"]   = true;
-                        $_SESSION["userRole"]     = $singleUserData[0];
-                        $_SESSION["firstName"]    = $singleUserData[1];
-                        $_SESSION["lastName"]     = $singleUserData[2];
-                        $_SESSION["userName"]     = $singleUserData[3];
-                        $_SESSION["userEmail"]    = $singleUserData[4];
-                        $_SESSION["userPassword"] = $singleUserData[5];
+                    $_SESSION["userSignin"]   = true;
+                    $_SESSION["userId"]       = $i;
+                    $_SESSION["userRole"]     = $singleUserData[0];
+                    $_SESSION["firstName"]    = $singleUserData[1];
+                    $_SESSION["lastName"]     = $singleUserData[2];
+                    $_SESSION["userName"]     = $singleUserData[3];
+                    $_SESSION["userEmail"]    = $singleUserData[4];
+                    $_SESSION["userPassword"] = $singleUserData[5];
 
-                    /*-- Redirecting conditionally after signin --*/
-                        if($_SESSION["userRole"] == "Admin"){
-                            echo"<script>window.location='admin_home.php'</script>";
-                        } else{
-                            echo"<script>window.location='user_home.php'</script>";
-                        }
+                    echo $_SESSION["userId"];
+                /*-- Redirecting conditionally after signin --*/
+                    if($_SESSION["userRole"] == "Admin"){
+                        echo"<script>window.location='admin_home.php'</script>";
+                    } else{
+                        echo"<script>window.location='user_home.php'</script>";
                     }
                 }
             }

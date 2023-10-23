@@ -10,17 +10,26 @@
         $updateId = $_GET['update'];
 
     /*-- Getting file data as array --*/
-        $data = file($filename); 
+        $data = file($filename);
 
         if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])){
         /*-- Set new data to specific array index --*/
-            $data[$updateId] = "{$_POST['role']},{$_POST['firstName']},{$_POST['lastName']},{$_POST['userName']},{$_POST['mailAddress']},{$_POST['userPassword']}";
+            if($_SESSION['userRole'] == "Admin"){
+                $data[$updateId] = "{$_POST['role']},{$_POST['firstName']},{$_POST['lastName']},{$_POST['userName']},{$_POST['mailAddress']},{$_POST['userPassword']}";
+            } else{
+                $data[$updateId] = "User,{$_POST['firstName']},{$_POST['lastName']},{$_POST['userName']},{$_POST['mailAddress']},{$_POST['userPassword']}";
+            }
             
         /*-- Inserting updated new array to the file --*/
             $result = file_put_contents($filename, $data);
             if($result !== false){
-                echo "<script>alert('User Role Updated Successfuly!')</script>";
-                echo "<script>window.location='admin_home.php'</script>";
+                if($updateId != $_SESSION['userId']){
+                    echo "<script>alert('User Role Updated Successfuly!')</script>";
+                    echo "<script>window.location='admin_home.php'</script>";
+                } else{
+                    echo "<script>alert('Profile Updated Successfuly!')</script>";
+                    echo "<script>window.location='admin_home.php'</script>";
+                }
             } else{
                 echo "<script>alert('Something wend wrong!')</script>";
             }
@@ -34,7 +43,7 @@
     }
 
     /*-- User Access Control Process --*/
-      if($_SESSION['userRole'] == "User"){
+      if($_SESSION['userRole'] == "User" && $updateId != $_SESSION['userId']){
         echo"<script>window.location='user_home.php'</script>";
       }
 ?>
@@ -46,9 +55,18 @@
         <div class="col-12 p-2">
         <!-- Card Start -->
           <div class="card rounded overflow-hidden">
-              <div class="card-header text-white fw-bold d-flex">
+              <div class="card-header text-white fw-bold p-3">
               <!-- Card Title Start -->
-                  <h5 class="card-title p-2 me-auto mb-0 text-uppercase">Update User</h5>
+                <?php if($updateId == $_SESSION['userId']){ ?>
+                    <h5 class="card-title mb-0 text-uppercase">
+                        <?php echo $_SESSION['firstName'] . " " . $_SESSION['lastName']; ?>
+                    </h5>
+                    <p class="m-0 text-uppercase">
+                        <?php echo $_SESSION['userRole']; ?>
+                    </p>
+                <?php } else{ ?>
+                    <h5 class="card-title p-2 mb-0 text-uppercase">Update user</h5>
+                <?php } ?>
               <!-- Card Title End -->
               </div>
 
@@ -64,24 +82,25 @@
                     ?>
                         <div class="col-12 mb-2">
                             <label for="firstName">First Name</label>
-                            <input type="text" readonly name="firstName" value="<?php echo $singleUserData[1]; ?>" class="form-control fs-5">
+                            <input type="text" <?php if($updateId != $_SESSION['userId']) { ?> readonly <?php } ?> name="firstName" value="<?php echo $singleUserData[1]; ?>" class="form-control fs-5">
                         </div>
                         
                         <div class="col-12 mb-2">
                             <label for="lastName">Last Name</label>
-                            <input type="text" readonly name="lastName" value="<?php echo $singleUserData[2]; ?>" class="form-control fs-5">
+                            <input type="text" <?php if($updateId != $_SESSION['userId']) { ?> readonly <?php } ?> name="lastName" value="<?php echo $singleUserData[2]; ?>" class="form-control fs-5">
                         </div>
 
                         <div class="col-12 mb-2">
                             <label for="userName">Username</label>
-                            <input type="text" readonly name="userName" value="<?php echo $singleUserData[3]; ?>" class="form-control fs-5">
+                            <input type="text" <?php if($updateId != $_SESSION['userId']) { ?> readonly <?php } ?> name="userName" value="<?php echo $singleUserData[3]; ?>" class="form-control fs-5">
                         </div>
 
                         <div class="col-12 mb-2">
                             <label for="mailAddress">Email</label>
-                            <input type="text" readonly name="mailAddress" value="<?php echo $singleUserData[4]; ?>" class="form-control fs-5">
+                            <input type="text" <?php if($updateId != $_SESSION['userId']) { ?> readonly <?php } ?> name="mailAddress" value="<?php echo $singleUserData[4]; ?>" class="form-control fs-5">
                         </div>
-
+                        
+                        <?php if($_SESSION['userRole'] == "Admin") { ?>
                         <div class="col-12 mb-2">
                           <label for="role">Role</label>
                           <select name="role" class="form-select fs-5">
@@ -89,11 +108,12 @@
                             <option value="User" <?php if($singleUserData[0] == "User"){ echo "selected"; } ?> >User</option>
                           </select>
                         </div>
+                        <?php } ?>
 
                         <input type="hidden" name="userPassword" value="<?php echo $singleUserData[5]; ?>">
                         
                         <div class="col-12 mt-5">
-                            <input class="btn btn-primary shadow-none text-white w-100 fs-5" type="submit" name="update" value="Update">
+                            <input class="btn btn-primary shadow-none text-white w-100 fs-5" type="submit" name="update" value="Save">
                         </div>
                     <?php } } } ?>
                     </div>

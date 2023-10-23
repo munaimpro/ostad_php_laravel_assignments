@@ -81,9 +81,11 @@
                   <table class="table w-100 text-center my-5">
                     <thead>
                         <tr>
-                            <th>Serial No</th>
+                            <th>Serial No <?php echo $_SESSION['userId']; ?></th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Role</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,6 +98,15 @@
                             <td><?php echo $i; ?></td>
                             <td><?php echo $user[1] . " " . $user[2] ?></td>
                             <td><?php echo $user[4] ?></td>
+                            <td>
+                              <?php if($i - 1 == $_SESSION['userId']) { echo $user[0]; } ?>
+                            </td>
+                            <td>
+                            <?php if($i - 1 == $_SESSION['userId']) {?>
+                              <a href="update_user.php?update=<?php echo $i - 1; ?>"><button class="btn btn-primary">Update</button></a>
+                              <a onclick="return confirm('Are you sure to Delete!')" href="?delete=<?php echo $i - 1; ?>"><button class="btn btn-danger">Remove</button></a>
+                            <?php } ?>
+                            </td>
                         </tr>
                     <?php } ?>
                     </tbody>
