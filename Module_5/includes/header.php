@@ -19,6 +19,26 @@
       echo "<script>location='signin.php'</script>";
     }
 ?>
+
+<?php if(isset($_GET['delete'])){ ?>
+<script>
+    function removeQueryParamAndReload(paramName) {
+        // Get the current URL
+        var currentURL = window.location.href;
+
+        // Create a URL object to work with the URL components
+        var url = new URL(currentURL);
+
+        // Remove the query parameter with the specified name
+        url.searchParams.delete(paramName);
+
+        // Reload the page with the modified URL
+        window.location.href = url.toString();
+    }
+    // Call the function with the query parameter you want to remove
+    removeQueryParamAndReload('delete');
+</script>
+<?php } ?>
 <!-- PHP Code End -->
 
 <!DOCTYPE html>
