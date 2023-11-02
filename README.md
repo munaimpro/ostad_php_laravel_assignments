@@ -1,4 +1,7 @@
 # Ostad PHP & Laravel Course Assignments
+## <a href="https://github.com/munaimpro/ostad_php_laravel_assignments/tree/main/Module_6">Assignment 6: SQL And Database Management system</a>
+#### Task: Solving Real-Life Business Problems using SQL <br/><br/>
+
 ## <a href="https://github.com/munaimpro/ostad_php_laravel_assignments/tree/main/Module_5">Assignment 5: PHP File, Session, Date, Exception Assignment</a>
 #### Task: User Authentication and Role Management System <br/><br/>
 
