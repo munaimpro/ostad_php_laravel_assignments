@@ -45,6 +45,7 @@ $result4 = $db->select("SELECT a.`name`, SUM(b.`totalAmount`) AS `totalPurchase`
 <h1>Task 2: Product name, quantity, and total amount for each order item</h1>
 <table style="width:100%; border-collapse:collapse">
     <tr>
+        <th>Order No</th>
         <th>Name</th>
         <th>Quantity</th>
         <th>Total Amount</th>
@@ -52,6 +53,7 @@ $result4 = $db->select("SELECT a.`name`, SUM(b.`totalAmount`) AS `totalPurchase`
     <?php if($result2){ 
         while($value = $result2->fetch_assoc()){ ?>
     <tr>
+        <td><?php echo $value['orderId'];?></td>
         <td><?php echo $value['name'];?></td>
         <td><?php echo $value['quantity'];?></td>
         <td><?php echo $value['totalAmount'];?></td>
