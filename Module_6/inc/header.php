@@ -1,5 +1,5 @@
 <?php
-	$fonts = "verdana";
+	$fonts = "sans-serif";
 	$bgcolor = "#3b96d5";
 	$fontcolor = "#fff";
 
@@ -21,6 +21,7 @@
 	table.tblone tr:nth-child(2n+1){background:#fff;height:30px;}
 	table.tblone tr:nth-child(2n){background:#f1f1f1;height:30px;}
 	#myform{width:400px;border:1px solid #fff;padding:10px;}
+	ul{list-style: none;display: inline-flex;} ul li{margin-right: 10px;} ul li a{text-decoration: none;padding: 10px; background-color: #3b96d5; color: #ffffff; border-radius: 5px;} #section-task2,#section-task3,#section-task4{display: none;}
 	</style>
 </head>
 <body>
