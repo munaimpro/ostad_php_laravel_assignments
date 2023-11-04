@@ -9,7 +9,7 @@ $result2 = $db->select("SELECT a.`name`, b.`orderId`, b.`quantity`, (b.`quantity
 
 
 /*-- Query for Task 3: Total revnue from each category --*/
-$result3 = $db->select("SELECT SUM(a.`quantity` * a.`unitPrice`) AS `revenue`, b.`name` AS `category` FROM `orderitems` a RIGHT JOIN `categories` b ON a.`catId` = b.`catId` GROUP BY a.`catId`");
+$result3 = $db->select("SELECT SUM(a.`quantity` * a.`unitPrice`) AS `revenue`, b.`name` AS `category` FROM `orderitems` a RIGHT JOIN `categories` b ON a.`catId` = b.`catId` GROUP BY a.`catId` ORDER BY `revenue` DESC");
 
 
 /*-- Query for Task 4: Customer name along with the total purchase amount in descending order of the purchase amount --*/
@@ -101,7 +101,7 @@ $result4 = $db->select("SELECT a.`name`, SUM(b.`totalAmount`) AS `totalPurchase`
 <table style="width:100%; border-collapse:collapse">
     <tr>
         <th>Name</th>
-        <th>Total Amount</th>
+        <th>Purchase</th>
     </tr>
     <?php if($result4){ 
         while($value = $result4->fetch_assoc()){ ?>
